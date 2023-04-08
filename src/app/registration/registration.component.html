@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col">
+        <h1>Registration</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <form [formGroup]="form">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <small class="text-danger" *ngIf="email?.touched && email?.errors?.['required']">
+                    Email is required!
+                  </small>
+              </div>
+              <div class="row">
+                <div class="form-group col-6">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <small class="text-danger" *ngIf="password?.touched && password?.errors?.['required']">
+                        Password is required!
+                      </small>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="confirm">Confirm assword</label>
+                    <input formControlName="passConfirm" type="password" class="form-control" id="confirm" placeholder="Confirm password">
+                    <small class="text-danger" *ngIf="passConfirm?.touched && passConfirm?.errors?.['required']">
+                        Password confirmation is required!
+                      </small>
+                      <small class="text-danger" *ngIf="passwordMatchError">
+                        Password does not match!
+                      </small>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="name">Name and Surname</label>
+                <input formControlName="name" type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name and surname">
+                <small class="text-danger" *ngIf="name?.touched && name?.errors?.['required']">
+                    Name and last name is required!
+                  </small>
+              </div>
+              <div class="form-group">
+                <label for="city">City</label>
+                <select formControlName="city" class="form-control" id="city">
+                  <option value="">----</option>
+                  <option [value]="city.id" *ngFor="let city of cities">{{city.name}}</option>
+                </select>
+                <small class="text-danger" *ngIf="city?.touched && city?.errors?.['required']">
+                    City is required!
+                  </small>
+              </div><br>
+              <button (click)="onRegistration()" [disabled]="form.invalid" type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+    </div>
+    <div class="col-3"></div>
+</div>

@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col">
+        <h1>My Account</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <form [formGroup]="form">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <small class="text-danger" *ngIf="email?.touched && email?.errors?.['required']">
+                    Email is required!
+                  </small>
+              </div>
+              <div class="row">
+                <div class="form-group col">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <small class="text-danger" *ngIf="password?.touched && password?.errors?.['required']">
+                        Password is required!
+                      </small>
+                  </div>
+              </div>
+              <br>
+              <button  [disabled]="form.invalid" type="submit" class="btn btn-primary" (click)="getAccount()">Log in</button>
+        </form>
+    </div>
+    <div class="col-2"></div>
+</div>
+<br>
+
+<div class="row" *ngIf="login">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">Email adress:</th>
+                <td> {{account.email}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Name:</th>
+                <td> {{account.name}}</td>
+              </tr>
+              <tr>
+                <th scope="row">City:</th>
+                <td> {{account.city.name}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row" *ngFor="let membership of account.memberships">
+            <div class="col-4">
+                <app-packet-item [packet]="membership.packet"></app-packet-item>            
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <p><b>Zapocelo:</b> {{membership.start_date | date }}</p>
+                    <p><b>Istice:</b> {{membership.end_date | date}}</p>
+                </div>
+            </div>
+            <div class="col-4">
+                <app-progress-bar [packet]="membership.packet" [membership]="membership"></app-progress-bar>
+            </div>
+          </div>
+    </div>
+    <div class="col-2"></div>
+</div>

@@ -1,0 +1,9 @@
+<div class="card border-primary mb-3">
+    <div class="card-header bg-primary text-white">{{packet.name}}</div>
+    <div class="card-body">
+      <h5 class="card-title">{{packet.months}} months</h5>
+      <p class="card-text">{{packet.trainings_per_month}} trainings per month</p>
+      <h6>{{packet.price}} RSD</h6>
+      <a *ngIf="renderBuy" [routerLink]="['/buy', packet.id]" class="btn btn-primary">Buy</a>
+    </div>
+  </div>

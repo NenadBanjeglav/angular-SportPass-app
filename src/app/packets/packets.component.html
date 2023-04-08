@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col">
+        <h1>Packets</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <div class="row">
+            <div class="col-4">
+                <div class="form-check">
+                    <input (change)="sviChecked($event)" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Svi
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input (change)="oneChecked($event)"  class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      1 mesec
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input (change)="moreChecked($event)"  class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                    <label class="form-check-label" for="flexRadioDefault3">
+                      Vise meseci
+                    </label>
+                  </div>
+            </div>
+            <div class="col-4">
+                <label for="customRange3" class="form-label">min. {{brojTreninga}}  treninga mesecno</label>
+                <input (change)="tpmChange($event)" type="range" class="form-range" min="12" max="20" step="4" id="customRange3">
+            </div>
+            <div class="col-4">
+                <select (change)="sortDirectionChange($event)" class="form-select" aria-label="Default select example">
+                    <option  value="asc" selected>cena rastuca</option>
+                    <option value="desc">cena opadajuca</option>   
+                  </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-3"></div>
+</div>
+<br>
+<div class="row">
+    <div class="col-2" *ngFor="let packet of packets.results">
+        <app-packet-item 
+        [packet]="packet"
+        [renderBuy]="true"></app-packet-item>
+    </div>
+</div>
